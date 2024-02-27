@@ -13,11 +13,12 @@ fn main() {
 
     // 使用两种方法实现 team_map2
     // 提示:其中一种方法是使用 `collect` 方法
+
+    // 第一种方法
     // let teams_map2 = teams_map1.clone().into_iter().collect();
-    let teams_map2 = HashMap::new();
-    for i in &teams_map1 {
-        teams_map2.insert(i.0.clone());
-    }
+
+    // 第二种方法
+    let teams_map2 = HashMap::from(teams);
 
     assert_eq!(teams_map1, teams_map2);
 
