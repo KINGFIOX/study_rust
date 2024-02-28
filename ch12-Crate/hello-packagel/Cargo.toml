@@ -1,0 +1,18 @@
+[package]
+name = "hello-packagel"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# [[lib]]
+# name = "hello-packagel"
+# path = "src/lib.rs"
+
+# 如果你的项目也包含二进制包
+[[bin]]
+name = "hello-package"
+path = "src/main.rs"
+
+
+[dependencies]
