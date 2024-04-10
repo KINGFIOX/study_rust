@@ -1,12 +1,10 @@
-use std::arch::asm;
+struct MutStr<'a, 'b> {
+    s: &'a mut &'b str,
+}
 
 fn main() {
-    let x: u64 = 3;
-    let y: u64;
-
-    unsafe {
-        asm!("add {0}, 5", inout(reg) x => y);
-    }
-
-    println!("{x}, {y}")
+    let mut r = "hello";
+    // rust 在修改 可变引用指向的值的时候，需要 用 * 操作符来解引用
+    *MutStr { s: &mut r }.s = "hellow";
+    println!("{r}")
 }

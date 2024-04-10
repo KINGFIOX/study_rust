@@ -1,6 +1,6 @@
 // in third.rs
-use std::rc::Rc;
 use std::cell::RefCell;
+use std::rc::Rc;
 
 /* ---------- ---------- 链表 ---------- ---------- */
 
@@ -22,19 +22,19 @@ impl<T> List<T> {
 
     pub fn prepend(&self, elem: T) -> List<T> {
         List {
-            head: Some(
-                Rc::new(Node {
-                    elem,
-                    next: self.head.clone(),
-                })
-            ),
+            head: Some(Rc::new(Node {
+                elem,
+                next: self.head.clone(),
+            })),
         }
     }
 
     pub fn tail(&self) -> List<T> {
         // mismatched types expected enum `Option<Rc<_>>` found enum `Option<Option<Rc<_>>>`
         // List { head: self.head.as_ref().map(|node| node.next.clone()) }
-        List { head: self.head.as_ref().and_then(|node| node.next.clone()) }
+        List {
+            head: self.head.as_ref().and_then(|node| node.next.clone()),
+        }
     }
 
     pub fn head(&self) -> Option<&T> {
@@ -68,7 +68,9 @@ impl<T> List<T> {
     pub fn iter(&self) -> Iter<'_, T> {
         // self.head 的类型是 Link<T> == Option<Rc<Node<T>>>
         // Node<T> {elem : T, next : Link<T> }
-        Iter { next: self.head.as_deref() } // 这里得到的是 Node<T>
+        Iter {
+            next: self.head.as_deref(),
+        } // 这里得到的是 Node<T>
     }
 }
 
